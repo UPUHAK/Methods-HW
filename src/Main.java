@@ -21,8 +21,8 @@ public class Main {
 
 
     public static void checkAndPrintLeapYear(int year) {
-        int introductionLeapYear = 1584;
-        if ((year % 4 == 0) && (year % 100 != 0) && (year >= introductionLeapYear)) {
+
+        if ((year % 4 == 0) && (year % 100 != 0)) {
             System.out.println(year + " год является високосным.");
         } else if (year % 400 == 0) {
             System.out.println(year + " год является високосным.");
@@ -37,25 +37,29 @@ public class Main {
         System.out.println("task2");
 
         int clientOS = 1;
-        int clientDeviceYear = 2018;
+        int clientDeviceYear = 2024;
         checkAndPrintVersionAppForOS(clientOS, clientDeviceYear);
 
     }
 
 
     public static void checkAndPrintVersionAppForOS(int clientOS, int year) {
+
         int currentYear = LocalDate.now().getYear();
+
+        String version = "";
         if (year < currentYear) {
-            if (clientOS == 0) {
-                System.out.println("Установите облегченную версию приложения для iOS по ссылке.");
-            } else {
-                System.out.println("Установите облегченную версию приложения для Android по ссылке.");
-            }
-        } else if (clientOS == 0) {
-            System.out.println("Установите версию приложения для iOS по ссылке.");
-        } else {
-            System.out.println("Установите версию приложения для Android по ссылке.");
+            version += "облегченную ";
         }
+
+        String messageOS;
+        if (clientOS == 0) {
+            messageOS = "iOS";
+        } else {
+            messageOS = "Android";
+        }
+
+        System.out.println("Установите " + version + "версию приложения для " + messageOS + " по ссылке.");
 
     }
 
@@ -79,7 +83,10 @@ public class Main {
         int days = 1;
         if (deliveryDistance > 20 && deliveryDistance <= 60) {
             days += 1;
-        } else days += 2;
+        } else {
+            days += 2;
+        }
+
 
         return days;
 
